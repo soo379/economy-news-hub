@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Source {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  category String // "domestic" | "international"
+  feedUrl  String    @unique
+  siteUrl  String
+  language String // "ko" | "en"
+  articles Article[]
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  sourceId    String
+  source      Source   @relation(fields: [sourceId], references: [id])
+  guid        String
+  title       String
+  titleKo     String?
+  summary     String?  @db.Text
+  summaryKo   String?  @db.Text
+  aiSummary   String?  @db.Text
+  category    String? // "제품" | "투자" | "정책" | "기술"
+  link        String
+  publishedAt DateTime
+  fetchedAt   DateTime @default(now())
+
+  @@unique([sourceId, guid])
+  @@index([publishedAt])
+}

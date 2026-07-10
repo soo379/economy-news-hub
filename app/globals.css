@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #bfdbfe;
+  color: #1e3a8a;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
