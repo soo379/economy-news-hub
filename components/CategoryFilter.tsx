@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { withParam } from "@/lib/url";
 
-const CATEGORIES = ["제품", "투자", "정책", "기술"];
+const CATEGORIES = ["마케팅", "제품", "투자", "정책"];
 
 const CATEGORY_ACTIVE_STYLES: Record<string, string> = {
+  마케팅: "border-emerald-700 bg-emerald-700 text-white",
   제품: "border-blue-700 bg-blue-700 text-white",
   투자: "border-amber-600 bg-amber-600 text-white",
   정책: "border-purple-700 bg-purple-700 text-white",
-  기술: "border-emerald-700 bg-emerald-700 text-white",
 };
 
 const INACTIVE_STYLE =

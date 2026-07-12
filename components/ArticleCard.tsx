@@ -19,17 +19,17 @@ type ArticleCardProps = {
 };
 
 const CATEGORY_BADGE_STYLES: Record<string, string> = {
+  마케팅: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
   제품: "bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
   투자: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
   정책: "bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
-  기술: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
 };
 
 const CATEGORY_ACCENT_STYLES: Record<string, string> = {
+  마케팅: "border-l-emerald-500",
   제품: "border-l-blue-500",
   투자: "border-l-amber-500",
   정책: "border-l-purple-500",
-  기술: "border-l-emerald-500",
 };
 
 export default function ArticleCard({ article }: ArticleCardProps) {

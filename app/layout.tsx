@@ -11,13 +11,13 @@ const display = Nanum_Myeongjo({
 
 export const metadata: Metadata = {
   title: {
-    default: "경제 브리핑",
-    template: "%s | 경제 브리핑",
+    default: "AI 마케팅 브리핑",
+    template: "%s | AI 마케팅 브리핑",
   },
-  description: "국내외 경제 뉴스를 3시간마다 모아 보여주는 경제 브리핑입니다.",
+  description: "국내외 AI·마케팅 뉴스를 3시간마다 모아 보여주는 브리핑입니다.",
   openGraph: {
-    title: "경제 브리핑",
-    description: "국내외 경제 뉴스를 3시간마다 모아 보여주는 경제 브리핑입니다.",
+    title: "AI 마케팅 브리핑",
+    description: "국내외 AI·마케팅 뉴스를 3시간마다 모아 보여주는 브리핑입니다.",
     locale: "ko_KR",
     type: "website",
   },

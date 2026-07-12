@@ -15,12 +15,12 @@ export default function Icon() {
           justifyContent: "center",
           background: "#1d4ed8",
           color: "white",
-          fontSize: 20,
+          fontSize: 15,
           fontWeight: 800,
           borderRadius: 7,
         }}
       >
-        경
+        AI
       </div>
     ),
     { ...size },

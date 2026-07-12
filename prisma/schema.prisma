@@ -28,7 +28,7 @@ model Article {
   summary     String?  @db.Text
   summaryKo   String?  @db.Text
   aiSummary   String?  @db.Text
-  category    String? // "제품" | "투자" | "정책" | "기술"
+  category    String? // "마케팅" | "제품" | "투자" | "정책"
   link        String
   publishedAt DateTime
   fetchedAt   DateTime @default(now())

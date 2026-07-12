@@ -8,8 +8,7 @@ import { PrismaClient } from "@prisma/client";
 import Anthropic from "@anthropic-ai/sdk";
 import { sources } from "./sources.mjs";
 
-// federalreserve.gov의 일부 피드(h15.xml)는 기본 Accept 헤더로는 406을 반환한다.
-// 반대로 hankyung은 브라우저 User-Agent로 위장하면 403을 반환하므로 UA는 건드리지 않는다.
+// 일부 피드는 기본 Accept 헤더 없이는 406을 반환하므로 명시해준다.
 const parser = new Parser({
   headers: {
     Accept: "application/rss+xml, application/xml, text/xml, */*",
@@ -24,7 +23,7 @@ const anthropic = process.env.ANTHROPIC_API_KEY
 const HAIKU_MODEL = "claude-haiku-4-5";
 const TRANSLATE_BATCH_SIZE = 20;
 const CLASSIFY_BATCH_SIZE = 30;
-const CATEGORIES = ["제품", "투자", "정책", "기술"];
+const CATEGORIES = ["마케팅", "제품", "투자", "정책"];
 
 const TRANSLATE_SCHEMA = {
   type: "object",
@@ -73,7 +72,7 @@ const CLASSIFY_SCHEMA = {
 async function translateChunk(items) {
   if (!anthropic || items.length === 0) return new Map();
 
-  const prompt = `다음은 미국 연방준비제도(Fed) 발표의 제목과 요약입니다. 각 항목을 자연스러운 한국어로 번역하고, 요약은 2문장 이내로 간결하게 다시 정리해주세요.
+  const prompt = `다음은 AI/마케팅 분야 해외 매체 기사의 제목과 요약입니다. 각 항목을 자연스러운 한국어로 번역하고, 요약은 2문장 이내로 간결하게 다시 정리해주세요.
 
 입력:
 ${JSON.stringify(items, null, 2)}`;
@@ -120,7 +119,7 @@ async function translateAll(newItems) {
 async function classifyChunk(items) {
   if (!anthropic || items.length === 0) return new Map();
 
-  const prompt = `다음은 경제 뉴스 기사 목록입니다. 각 기사를 "제품", "투자", "정책", "기술" 중 하나로 분류하고, 핵심 내용을 한국어 한 문장으로 요약해주세요.
+  const prompt = `다음은 AI/마케팅 분야 뉴스 기사 목록입니다. 각 기사를 "마케팅"(마케팅 전략·캠페인·마테크 도구), "제품"(AI 제품·모델 출시), "투자"(펀딩·인수), "정책"(규제·정책) 중 하나로 분류하고, 핵심 내용을 한국어 한 문장으로 요약해주세요.
 
 입력:
 ${JSON.stringify(items, null, 2)}`;
